@@ -10,27 +10,70 @@ export function CodeBlock({ code, lang = 'bash', title }: Props) {
   const [copied, setCopied] = useState(false);
 
   async function copy() {
-    await navigator.clipboard.writeText(code);
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* ignore */
+    }
   }
 
   return (
-    <div className="code-block group">
-      <div className="code-block-header">
-        <span className="text-xs font-medium text-slate-400">{title ?? lang}</span>
-        <button
-          type="button"
-          onClick={copy}
-          className="code-copy-btn"
-          aria-label="Copy code"
-        >
-          {copied ? 'Copied' : 'Copy'}
+    <div className="code-panel">
+      <div className="code-panel-bar">
+        <div className="code-dots" aria-hidden="true">
+          <span className="dot dot-red" />
+          <span className="dot dot-yellow" />
+          <span className="dot dot-green" />
+        </div>
+        <span className="code-panel-title">{title ?? lang}</span>
+        <button type="button" className="code-copy" onClick={copy} aria-label="Copy code">
+          {copied ? (
+            <>
+              <CheckIcon /> Copied
+            </>
+          ) : (
+            <>
+              <CopyIcon /> Copy
+            </>
+          )}
         </button>
       </div>
-      <pre className="code-pre">
+      <pre className="code-panel-body">
         <code>{code}</code>
       </pre>
     </div>
+  );
+}
+
+function CopyIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <rect x="9" y="9" width="13" height="13" rx="2" />
+      <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path d="M20 6L9 17l-5-5" />
+    </svg>
   );
 }

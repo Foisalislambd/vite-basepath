@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getBase, getAbsoluteBase } from 'vite-basepath/runtime';
 import { SITE } from '../data/site';
 import { CodeBlock } from './CodeBlock';
+import { PathVisual } from './PathVisual';
 
 export function Hero() {
   const [base, setBase] = useState('…');
@@ -13,63 +14,69 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="hero" aria-labelledby="hero-title">
-      <div className="container hero-grid">
+    <section id="hero" className="hero" aria-labelledby="hero-title">
+      <div className="hero-inner">
         <div className="hero-copy">
-          <p className="eyebrow">Vite plugin · MIT · npm</p>
+          <div className="hero-pills">
+            <span className="pill">Vite 3 – 8</span>
+            <span className="pill pill-accent">MIT</span>
+            <span className="pill">Zero config</span>
+          </div>
           <h1 id="hero-title">
-            Deploy your Vite app to <span className="text-gradient">any path</span>
+            Ship once.
+            <br />
+            <span className="hero-highlight">Deploy anywhere.</span>
           </h1>
           <p className="hero-lead">
-            {SITE.tagline} Stop rebuilding for every subfolder, cPanel path, or GitHub
-            Pages project site. Set <code>base: './'</code> automatically and detect the
-            real URL at runtime.
+            {SITE.tagline} Fix broken assets on GitHub Pages, cPanel subfolders, and
+            nested paths — with <code>base: './'</code> and smart runtime detection for
+            your router.
           </p>
-          <div className="hero-cta">
-            <a href="#install" className="btn-primary">
+          <div className="hero-actions">
+            <a href="#install" className="btn btn-primary">
               Get started
+              <span aria-hidden="true">→</span>
             </a>
             <a
               href={SITE.npmUrl}
-              className="btn-secondary"
+              className="btn btn-secondary"
               target="_blank"
               rel="noopener noreferrer"
             >
-              View on npm
+              npm package
             </a>
           </div>
-          <CodeBlock
-            title="Quick install"
-            lang="bash"
-            code={`npm install ${SITE.npm} --save-dev`}
-          />
+          <div className="hero-install">
+            <CodeBlock
+              title="install"
+              lang="bash"
+              code={`npm install ${SITE.npm} --save-dev`}
+            />
+          </div>
         </div>
-        <aside className="live-panel" aria-label="Live path detection">
-          <p className="live-panel-label">Live on this page</p>
-          <p className="live-panel-hint">
-            This site is built with vite-basepath. Values update from your current URL.
-          </p>
-          <dl className="live-stats">
-            <div>
-              <dt>getBase()</dt>
-              <dd>
-                <code>{base}</code>
-              </dd>
+        <div className="hero-aside">
+          <PathVisual />
+          <div className="live-card">
+            <div className="live-card-head">
+              <span className="live-pulse" />
+              Live detection
             </div>
-            <div>
-              <dt>getAbsoluteBase()</dt>
-              <dd>
-                <code className="text-sm">{absolute}</code>
-              </dd>
-            </div>
-            <div>
-              <dt>Deploy path</dt>
-              <dd>
-                <code>{SITE.pagesPath}</code>
-              </dd>
-            </div>
-          </dl>
-        </aside>
+            <dl className="live-dl">
+              <div>
+                <dt>getBase()</dt>
+                <dd>
+                  <code>{base}</code>
+                </dd>
+              </div>
+              <div>
+                <dt>getAbsoluteBase()</dt>
+                <dd>
+                  <code className="code-sm">{absolute}</code>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
       </div>
     </section>
   );

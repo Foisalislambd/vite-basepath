@@ -1,4 +1,4 @@
-import { SiteHeader } from './components/SiteHeader';
+import { Layout } from './components/Layout';
 import { Hero } from './components/Hero';
 import { ProblemSolution } from './components/ProblemSolution';
 import { QuickStart } from './components/QuickStart';
@@ -11,19 +11,16 @@ import { SiteFooter } from './components/SiteFooter';
 
 export default function App() {
   return (
-    <>
-      <SiteHeader />
-      <main>
-        <Hero />
-        <ProblemSolution />
-        <QuickStart />
-        <HowItWorks />
-        <RouterGuide />
-        <GitHubPagesGuide />
-        <ApiReference />
-        <Faq />
-      </main>
+    <Layout>
+      <Hero />
+      <ProblemSolution />
+      <QuickStart />
+      <HowItWorks />
+      <RouterGuide />
+      <GitHubPagesGuide />
+      <ApiReference />
+      <Faq />
       <SiteFooter />
-    </>
+    </Layout>
   );
 }

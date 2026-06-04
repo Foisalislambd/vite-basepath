@@ -3,23 +3,25 @@ import { SITE } from '../data/site';
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <div className="container footer-inner">
-        <p>
-          <strong>{SITE.title}</strong> — MIT License
-        </p>
-        <nav className="footer-nav" aria-label="Footer links">
+      <div className="footer-grid">
+        <div>
+          <p className="footer-brand">{SITE.title}</p>
+          <p className="footer-tagline">Relative Vite builds for real-world hosting.</p>
+        </div>
+        <nav className="footer-links" aria-label="Footer">
           <a href={SITE.github} target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
           <a href={SITE.npmUrl} target="_blank" rel="noopener noreferrer">
             npm
           </a>
-          <a href="#install">Documentation</a>
+          <a href="#install">Docs</a>
         </nav>
-        <p className="footer-meta">
-          Built with Vite + React. Deployed via GitHub Pages with vite-basepath.
-        </p>
       </div>
+      <p className="footer-copy">
+        MIT © {new Date().getFullYear()} · Built with Vite + React · Deployed on GitHub
+        Pages using vite-basepath
+      </p>
     </footer>
   );
 }

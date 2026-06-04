@@ -1,46 +1,47 @@
 import { SITE } from '../data/site';
+import { SectionHeader } from './SectionHeader';
 import { CodeBlock } from './CodeBlock';
 
 export function GitHubPagesGuide() {
   return (
-    <section id="github-pages" className="section section-alt">
-      <div className="container narrow">
-        <h2 className="section-title">GitHub Pages guide</h2>
-        <p className="section-lead">
-          This documentation site is hosted at{' '}
-          <a href={SITE.liveUrl} className="link">
-            {SITE.liveUrl}
-          </a>
-          . Your project site URL is always{' '}
-          <code>https://&lt;username&gt;.github.io/&lt;repo-name&gt;/</code>.
-        </p>
-
-        <ol className="steps-list numbered">
-          <li>
-            Add <code>viteBasepath()</code> to <code>vite.config.ts</code> (see Install).
-          </li>
-          <li>
-            Push your repo to GitHub (repo name = URL path, e.g.{' '}
-            <code>vite-basepath</code>).
-          </li>
-          <li>
-            <strong>Settings → Pages → Build and deployment</strong> — Source:{' '}
-            <strong>GitHub Actions</strong>.
-          </li>
-          <li>
-            Use the included workflow or build <code>dist/</code> and deploy via Actions.
-          </li>
-        </ol>
-
-        <div className="callout callout-success">
-          You do <strong>not</strong> need <code>base: '/vite-basepath/'</code>. The
-          plugin keeps <code>./</code> and detects <code>{SITE.pagesPath}</code> at
-          runtime.
+    <section className="doc-section doc-section-muted">
+      <SectionHeader
+        id="github-pages"
+        eyebrow="GitHub Pages"
+        title="Host on GitHub Pages"
+        lead="This documentation site is the proof — built and deployed with vite-basepath."
+      />
+      <div className="gh-steps">
+        <div className="gh-step">
+          <span>1</span>
+          <p>
+            Add <code>viteBasepath()</code> to your Vite config.
+          </p>
         </div>
-
-        <h3 className="subsection-title">Optional: CLI</h3>
-        <CodeBlock code="npx vite-basepath build" />
+        <div className="gh-step">
+          <span>2</span>
+          <p>
+            Enable <strong>Settings → Pages → GitHub Actions</strong> as the source.
+          </p>
+        </div>
+        <div className="gh-step">
+          <span>3</span>
+          <p>
+            Push to <code>main</code>. Your site lives at{' '}
+            <a href={SITE.liveUrl} className="text-link">
+              {SITE.liveUrl}
+            </a>
+          </p>
+        </div>
       </div>
+      <div className="tip-card tip-card-success">
+        <strong>No base: '/repo-name/' needed</strong>
+        <p>
+          Keep <code>./</code> — the plugin detects <code>{SITE.pagesPath}</code> at
+          runtime automatically.
+        </p>
+      </div>
+      <CodeBlock code="npx vite-basepath build" title="optional CLI" />
     </section>
   );
 }

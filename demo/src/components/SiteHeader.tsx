@@ -1,39 +1,32 @@
-import { SITE, NAV } from '../data/site';
+import { SITE } from '../data/site';
 
-export function SiteHeader() {
+type Props = {
+  onMenuToggle: () => void;
+  menuOpen: boolean;
+};
+
+export function SiteHeader({ onMenuToggle, menuOpen }: Props) {
   return (
-    <header className="site-header">
-      <div className="container header-inner">
-        <a href="#" className="logo">
-          <span className="logo-mark" aria-hidden="true" />
-          <span>{SITE.title}</span>
-        </a>
-        <nav className="nav" aria-label="Documentation sections">
-          {NAV.map((item) => (
-            <a key={item.id} href={`#${item.id}`} className="nav-link">
-              {item.label}
-            </a>
-          ))}
-        </nav>
-        <div className="header-actions">
-          <a
-            href={SITE.npmUrl}
-            className="badge-version"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            v{SITE.version}
-          </a>
-          <a
-            href={SITE.github}
-            className="btn-ghost"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
-        </div>
-      </div>
+    <header className="topbar">
+      <button
+        type="button"
+        className="menu-btn"
+        aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+        aria-expanded={menuOpen}
+        onClick={onMenuToggle}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+      <a
+        href={SITE.github}
+        className="topbar-github"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </a>
     </header>
   );
 }

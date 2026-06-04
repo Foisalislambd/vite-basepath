@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { SectionHeader } from './SectionHeader';
+
 const FAQ = [
   {
     q: 'Can I use base: "/" instead of "./"?',
@@ -9,7 +12,7 @@ const FAQ = [
   },
   {
     q: 'Can I open index.html from Windows Explorer?',
-    a: 'No. file:// URLs block ES modules in most browsers. Always use a local server.',
+    a: 'No. file:// URLs block ES modules in most browsers. Always use a local HTTP server.',
   },
   {
     q: 'Do I need base: "/repo-name/" for GitHub Pages?',
@@ -17,23 +20,39 @@ const FAQ = [
   },
   {
     q: 'What Vite versions are supported?',
-    a: 'Vite 3 through 8. transformIndexHtml uses order + handler (Vite 7+).',
+    a: 'Vite 3 through 8. transformIndexHtml uses order + handler (required in Vite 7+).',
   },
 ] as const;
 
 export function Faq() {
+  const [open, setOpen] = useState<number | null>(0);
+
   return (
-    <section id="faq" className="section section-alt">
-      <div className="container narrow">
-        <h2 className="section-title">FAQ</h2>
-        <dl className="faq-list">
-          {FAQ.map((item) => (
-            <div key={item.q} className="faq-item">
-              <dt>{item.q}</dt>
-              <dd>{item.a}</dd>
+    <section className="doc-section doc-section-muted">
+      <SectionHeader id="faq" eyebrow="FAQ" title="Common questions" />
+      <div className="accordion">
+        {FAQ.map((item, i) => {
+          const isOpen = open === i;
+          return (
+            <div
+              key={item.q}
+              className={isOpen ? 'accordion-item is-open' : 'accordion-item'}
+            >
+              <button
+                type="button"
+                className="accordion-trigger"
+                aria-expanded={isOpen}
+                onClick={() => setOpen(isOpen ? null : i)}
+              >
+                <span>{item.q}</span>
+                <span className="accordion-chevron" aria-hidden="true">
+                  {isOpen ? '−' : '+'}
+                </span>
+              </button>
+              {isOpen ? <div className="accordion-panel">{item.a}</div> : null}
             </div>
-          ))}
-        </dl>
+          );
+        })}
       </div>
     </section>
   );
