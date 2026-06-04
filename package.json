@@ -3,30 +3,36 @@
   "version": "1.0.0",
   "description": "Vite plugin that fixes asset paths so your app works in any subdirectory or domain path — zero config needed.",
   "type": "module",
-  "main": "./src/index.js",
-  "module": "./src/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
-      "import": "./src/index.js",
-      "default": "./src/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./runtime": {
-      "import": "./src/runtime.js",
-      "default": "./src/runtime.js"
+      "types": "./dist/runtime.d.ts",
+      "import": "./dist/runtime.js",
+      "default": "./dist/runtime.js"
     }
   },
   "bin": {
-    "vite-basepath": "./bin/cli.js"
+    "vite-basepath": "./bin/vite-basepath.js"
   },
   "files": [
-    "src/",
-    "bin/",
+    "dist",
+    "bin/vite-basepath.js",
     "README.md"
   ],
   "scripts": {
-    "check": "node --check src/shared.js && node --check src/index.js && node --check src/runtime.js && node --check bin/cli.js",
-    "verify": "node test/verify-logic.mjs",
-    "verify:build": "npm install --prefix test/fixtures/minimal && node test/verify-build.mjs"
+    "build": "tsup",
+    "check": "tsc --noEmit",
+    "prepublishOnly": "npm run build",
+    "verify": "npm run build && node test/verify-logic.mjs",
+    "verify:build": "npm run build && npm install --prefix test/fixtures/minimal && node test/verify-build.mjs"
   },
   "keywords": [
     "vite",
@@ -48,8 +54,14 @@
   "peerDependencies": {
     "vite": ">=3.0.0"
   },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.7.0",
+    "vite": "^8.0.0"
+  },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "repository": {
     "type": "git",

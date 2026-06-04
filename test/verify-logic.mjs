@@ -4,7 +4,7 @@ import {
   ensureTrailingSlash,
   detectBaseFromAssetUrl,
   assetPathMarker,
-} from '../src/shared.js';
+} from '../dist/shared.js';
 
 assert.equal(RELATIVE_BASE, './');
 
@@ -24,5 +24,10 @@ assert.equal(
 
 assert.equal(ensureTrailingSlash('/demo'), '/demo/');
 assert.equal(ensureTrailingSlash(''), '/');
+
+assert.equal(detectBaseFromAssetUrl('', origin, '/assets/'), null);
+assert.equal(detectBaseFromAssetUrl(`${origin}/other/bundle.js`, origin, '/assets/'), null);
+assert.equal(assetPathMarker('static'), '/static/');
+assert.equal(assetPathMarker('/static/'), '/static/');
 
 console.log('verify-logic: all assertions passed');

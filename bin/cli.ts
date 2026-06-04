@@ -1,26 +1,16 @@
-#!/usr/bin/env node
-
-/**
- * vite-basepath CLI — runs vite build/preview (always base ./ via plugin).
- *
- * Usage:
- *   vite-basepath build
- *   vite-basepath build --outDir dist
- */
-
-import { execSync } from 'child_process';
+import { execSync } from 'node:child_process';
 
 const args = process.argv.slice(2);
 
-function getFlag(name, short) {
+function getFlag(name: string, short?: string): string | null {
   const longIdx = args.indexOf(`--${name}`);
   const shortIdx = short ? args.indexOf(`-${short}`) : -1;
   const idx = longIdx !== -1 ? longIdx : shortIdx;
   if (idx === -1) return null;
-  return args[idx + 1] || null;
+  return args[idx + 1] ?? null;
 }
 
-function hasFlag(name, short) {
+function hasFlag(name: string, short?: string): boolean {
   return args.includes(`--${name}`) || (short ? args.includes(`-${short}`) : false);
 }
 
@@ -56,8 +46,8 @@ if (showHelp) {
   process.exit(0);
 }
 
-const ALLOWED = ['build', 'preview'];
-if (!ALLOWED.includes(command)) {
+const ALLOWED = ['build', 'preview'] as const;
+if (!ALLOWED.includes(command as (typeof ALLOWED)[number])) {
   console.error(`  ✗ Unknown command: "${command}"`);
   console.error(`  Allowed: ${ALLOWED.join(', ')}\n`);
   process.exit(1);
@@ -74,9 +64,12 @@ const successLabel = command === 'preview' ? 'Preview ready' : 'Build complete';
 console.log(`\n  vite-basepath → vite ${command} (base ./)\n`);
 
 try {
-  execSync(cmd, { stdio: 'inherit', shell: true });
+  execSync(cmd, {
+    stdio: 'inherit',
+    shell: process.platform === 'win32' ? process.env.ComSpec ?? 'cmd.exe' : '/bin/sh',
+  });
   console.log(`\n  ✅ ${successLabel}!\n`);
-} catch (_) {
+} catch {
   console.error(`\n  ✗ ${command} failed.\n`);
   process.exit(1);
 }

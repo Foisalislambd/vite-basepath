@@ -1,19 +1,22 @@
-# Development files
-.github/
+# Source & dev (published: dist + bin shim + README)
+src/
+bin/cli.ts
 test/
-tests/
+tsconfig.json
+tsup.config.ts
+.gitignore
+
+# Dev tooling
+.github/
 *.test.js
 *.spec.js
-jest.config.js
 .eslintrc*
 .prettierrc*
 
-# Editor
+# Editor / OS
 .vscode/
 .idea/
 *.swp
-
-# OS
 .DS_Store
 Thumbs.db
 

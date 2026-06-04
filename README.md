@@ -42,12 +42,12 @@ npm install vite-basepath --save-dev
 ```js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react'; // তোমার existing framework plugin
-import dynamicBase from 'vite-basepath'; // ← এই import টা যোগ করো
+import viteBasepath from 'vite-basepath'; // ← এই import টা যোগ করো
 
 export default defineConfig({
   plugins: [
     react(),
-    dynamicBase(), // ← এই line টা যোগ করো
+    viteBasepath(), // ← এই line টা যোগ করো
   ],
 });
 ```
@@ -91,6 +91,18 @@ const router = createRouter({
 
 ---
 
+## TypeScript
+
+Types ship with the package (`ViteBasepathOptions`, `getBase()`, etc.). No `@types` package needed.
+
+```ts
+import { defineConfig } from 'vite';
+import viteBasepath, { type ViteBasepathOptions } from 'vite-basepath';
+import { getBase } from 'vite-basepath/runtime';
+```
+
+---
+
 ## Installation
 
 ```bash
@@ -110,11 +122,11 @@ pnpm add vite-basepath --save-dev
 ```js
 // vite.config.js
 import { defineConfig } from 'vite';
-import dynamicBase from 'vite-basepath';
+import viteBasepath from 'vite-basepath';
 
 export default defineConfig({
   plugins: [
-    dynamicBase()  // That's it! ✅
+    viteBasepath()  // That's it! ✅
   ]
 });
 ```
@@ -216,7 +228,7 @@ Options:
 ## Plugin Options
 
 ```js
-dynamicBase({
+viteBasepath({
   // Inject runtime script so getBase() can detect deploy path. Default: true
   injectRuntime: true,
 

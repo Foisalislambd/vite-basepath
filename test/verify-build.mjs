@@ -17,11 +17,12 @@ assert.ok(fs.existsSync(htmlPath), 'dist/index.html must exist');
 
 const html = fs.readFileSync(htmlPath, 'utf8');
 assert.match(html, /name="vite-app-base"/, 'meta tag must be injected');
+assert.match(html, /name="vite-app-base"[^>]*content="\.\/"/, 'meta must record relative base ./');
+assert.match(html, /name="vite-app-asset-marker"[^>]*content="\/assets\/"/, 'asset marker meta');
 assert.match(html, /data-vite-basepath/, 'runtime script must be injected');
 assert.match(html, /__VITE_BASE__/, 'window global must be referenced');
-assert.match(html, /\/assets\//, 'built assets must use /assets/ path segment');
+assert.match(html, /(?:src|href)="\.\/assets\//, 'assets must use relative ./assets/ paths');
 
-// Relative base: script/link hrefs should not be root-absolute-only (no bare "/assets/..." at domain root)
 const rootAbsoluteAsset = /(?:src|href)="\/assets\//;
 assert.ok(!rootAbsoluteAsset.test(html), 'must not use root-absolute /assets/ paths with base ./');
 

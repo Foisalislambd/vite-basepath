@@ -1,14 +1,4 @@
-/**
- * vite-basepath
- *
- * Sets Vite base to ./ so builds work in any subdirectory.
- * Runtime detection finds the real path (e.g. /demo/) for routers.
- *
- * @example
- * import dynamicBase from 'vite-basepath';
- * export default defineConfig({ plugins: [dynamicBase()] });
- */
-
+import type { Plugin } from 'vite';
 import {
   PLUGIN_NAME,
   META_NAME,
@@ -17,11 +7,11 @@ import {
   RELATIVE_BASE,
   assetPathMarker,
 } from './shared.js';
+import type { ViteBasepathOptions } from './types.js';
 
-/**
- * @param {string} assetMarker  e.g. "/assets/"
- */
-function buildRuntimeInlineScript(assetMarker) {
+export type { ViteBasepathOptions } from './types.js';
+
+function buildRuntimeInlineScript(assetMarker: string): string {
   return `(function () {
   var marker = ${JSON.stringify(assetMarker)};
   var winKey = ${JSON.stringify(WINDOW_VAR)};
@@ -57,16 +47,9 @@ function buildRuntimeInlineScript(assetMarker) {
 }
 
 /**
- * @typedef {Object} DynamicBaseOptions
- * @property {boolean} [injectRuntime]  Inject runtime base detection (default: true)
- * @property {boolean} [verbose]        Print info during build (default: true)
+ * Vite plugin: build with `base: './'` and optional runtime base detection for routers.
  */
-
-/**
- * @param {DynamicBaseOptions} options
- * @returns {import('vite').Plugin}
- */
-export default function dynamicBase(options = {}) {
+export default function viteBasepath(options: ViteBasepathOptions = {}): Plugin {
   const { injectRuntime = true, verbose = true } = options;
 
   let assetMarker = assetPathMarker();
@@ -100,8 +83,7 @@ export default function dynamicBase(options = {}) {
       handler(html, ctx) {
         if (!ctx.bundle) return html;
 
-        /** @type {import('vite').HtmlTagDescriptor[]} */
-        const tags = [
+        const tags: import('vite').HtmlTagDescriptor[] = [
           {
             tag: 'meta',
             attrs: { name: META_NAME, content: RELATIVE_BASE },

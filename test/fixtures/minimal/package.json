@@ -3,9 +3,7 @@
   "private": true,
   "type": "module",
   "devDependencies": {
-    "vite": "^8.0.0"
-  },
-  "dependencies": {
+    "vite": "^8.0.0",
     "vite-basepath": "file:../../.."
   }
 }
