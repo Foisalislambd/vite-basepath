@@ -1,0 +1,22 @@
+# Development files
+.github/
+test/
+tests/
+*.test.js
+*.spec.js
+jest.config.js
+.eslintrc*
+.prettierrc*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
