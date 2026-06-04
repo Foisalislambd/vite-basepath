@@ -12,10 +12,7 @@ export function GitHubPagesGuide() {
             {SITE.liveUrl}
           </a>
           . Your project site URL is always{' '}
-          <code>
-            https://&lt;username&gt;.github.io/&lt;repo-name&gt;/
-          </code>
-          .
+          <code>https://&lt;username&gt;.github.io/&lt;repo-name&gt;/</code>.
         </p>
 
         <ol className="steps-list numbered">
@@ -23,7 +20,8 @@ export function GitHubPagesGuide() {
             Add <code>viteBasepath()</code> to <code>vite.config.ts</code> (see Install).
           </li>
           <li>
-            Push your repo to GitHub (repo name = URL path, e.g. <code>vite-basepath</code>).
+            Push your repo to GitHub (repo name = URL path, e.g.{' '}
+            <code>vite-basepath</code>).
           </li>
           <li>
             <strong>Settings → Pages → Build and deployment</strong> — Source:{' '}
@@ -35,8 +33,9 @@ export function GitHubPagesGuide() {
         </ol>
 
         <div className="callout callout-success">
-          You do <strong>not</strong> need <code>base: '/vite-basepath/'</code>. The plugin keeps{' '}
-          <code>./</code> and detects <code>{SITE.pagesPath}</code> at runtime.
+          You do <strong>not</strong> need <code>base: '/vite-basepath/'</code>. The
+          plugin keeps <code>./</code> and detects <code>{SITE.pagesPath}</code> at
+          runtime.
         </div>
 
         <h3 className="subsection-title">Optional: CLI</h3>

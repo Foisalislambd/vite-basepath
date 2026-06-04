@@ -21,15 +21,20 @@ export function Hero() {
             Deploy your Vite app to <span className="text-gradient">any path</span>
           </h1>
           <p className="hero-lead">
-            {SITE.tagline} Stop rebuilding for every subfolder, cPanel path, or GitHub Pages
-            project site. Set <code>base: './'</code> automatically and detect the real URL at
-            runtime.
+            {SITE.tagline} Stop rebuilding for every subfolder, cPanel path, or GitHub
+            Pages project site. Set <code>base: './'</code> automatically and detect the
+            real URL at runtime.
           </p>
           <div className="hero-cta">
             <a href="#install" className="btn-primary">
               Get started
             </a>
-            <a href={SITE.npmUrl} className="btn-secondary" target="_blank" rel="noopener noreferrer">
+            <a
+              href={SITE.npmUrl}
+              className="btn-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               View on npm
             </a>
           </div>

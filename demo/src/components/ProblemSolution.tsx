@@ -12,7 +12,9 @@ export function ProblemSolution() {
           </p>
           <div className="compare-grid">
             <article className="compare-card compare-bad">
-              <h3>Root base <code>/</code></h3>
+              <h3>
+                Root base <code>/</code>
+              </h3>
               <ul>
                 <li>
                   <code>&lt;script src="/assets/index.js"&gt;</code>
@@ -29,7 +31,9 @@ export function ProblemSolution() {
                 <li>
                   <code>&lt;script src="./assets/index.js"&gt;</code>
                 </li>
-                <li>Resolves next to <code>index.html</code></li>
+                <li>
+                  Resolves next to <code>index.html</code>
+                </li>
                 <li className="text-good">Works in any folder</li>
               </ul>
             </article>
@@ -41,18 +45,21 @@ export function ProblemSolution() {
         <div className="container narrow">
           <h2 className="section-title">The solution</h2>
           <p className="section-lead">
-            Add one plugin. Your production build uses relative assets. Routers get the real deploy
-            path from <code>getBase()</code> — no hard-coded <code>/repo-name/</code> in config.
+            Add one plugin. Your production build uses relative assets. Routers get the
+            real deploy path from <code>getBase()</code> — no hard-coded{' '}
+            <code>/repo-name/</code> in config.
           </p>
           <ol className="steps-list">
             <li>
               <strong>Build time</strong> — plugin sets Vite <code>base: './'</code>
             </li>
             <li>
-              <strong>HTML inject</strong> — tiny script detects where <code>/assets/</code> loaded
+              <strong>HTML inject</strong> — tiny script detects where{' '}
+              <code>/assets/</code> loaded
             </li>
             <li>
-              <strong>Runtime</strong> — <code>getBase()</code> returns e.g. <code>/vite-basepath/</code>
+              <strong>Runtime</strong> — <code>getBase()</code> returns e.g.{' '}
+              <code>/vite-basepath/</code>
             </li>
           </ol>
         </div>

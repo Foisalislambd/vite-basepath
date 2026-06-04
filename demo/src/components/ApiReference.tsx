@@ -33,7 +33,9 @@ export function ApiReference() {
                 <td>
                   <code>string</code>
                 </td>
-                <td>Deploy path with trailing slash, e.g. <code>/demo/</code></td>
+                <td>
+                  Deploy path with trailing slash, e.g. <code>/demo/</code>
+                </td>
               </tr>
               <tr>
                 <td>

@@ -38,7 +38,8 @@
     "format:check": "prettier --check .",
     "verify": "npm run build && node test/verify-logic.mjs",
     "verify:build": "npm run build && npm install --prefix test/fixtures/minimal && node test/verify-build.mjs",
-    "test": "npm run lint && npm run format:check && npm run check && npm run verify && npm run verify:build",
+    "verify:demo": "npm run build && cd demo && npm ci && npm run build && node ../test/verify-demo-build.mjs",
+    "test": "npm run lint && npm run format:check && npm run check && npm run verify && npm run verify:build && npm run verify:demo",
     "prepublishOnly": "npm run test"
   },
   "keywords": [

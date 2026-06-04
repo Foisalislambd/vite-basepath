@@ -277,6 +277,19 @@ location /demo/template/ {
 
 Copy `dist/` into that folder — no separate build per path.
 
+### GitHub Pages
+
+| Item               | Link                                                                                    |
+| ------------------ | --------------------------------------------------------------------------------------- |
+| Documentation site | [foisalislambd.github.io/vite-basepath](https://foisalislambd.github.io/vite-basepath/) |
+| Source             | [`demo/`](demo/)                                                                        |
+| Deploy guide       | [docs/GITHUB_PAGES.md](docs/GITHUB_PAGES.md)                                            |
+
+1. **Settings → Pages → Source:** GitHub Actions
+2. Push to `main` — [deploy-pages.yml](.github/workflows/deploy-pages.yml) publishes `demo/dist`
+
+No `base: '/repo-name/'` required.
+
 ---
 
 ## Compatibility

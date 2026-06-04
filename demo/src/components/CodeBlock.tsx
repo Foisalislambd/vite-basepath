@@ -19,7 +19,12 @@ export function CodeBlock({ code, lang = 'bash', title }: Props) {
     <div className="code-block group">
       <div className="code-block-header">
         <span className="text-xs font-medium text-slate-400">{title ?? lang}</span>
-        <button type="button" onClick={copy} className="code-copy-btn" aria-label="Copy code">
+        <button
+          type="button"
+          onClick={copy}
+          className="code-copy-btn"
+          aria-label="Copy code"
+        >
           {copied ? 'Copied' : 'Copy'}
         </button>
       </div>
