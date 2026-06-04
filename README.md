@@ -174,49 +174,6 @@ import { getBase } from 'vite-basepath/runtime';
 
 ---
 
-## Deploying to a Specific Path
-
-If you know the subfolder ahead of time, pass it explicitly:
-
-### Option A: Plugin config
-
-```js
-// vite.config.js
-export default defineConfig({
-  plugins: [
-    dynamicBase({ base: '/demo/template' })
-  ]
-});
-```
-
-### Option B: Environment variable
-
-```bash
-# In terminal
-APP_BASE_URL=/demo/template npx vite build
-
-# In .env file
-APP_BASE_URL=/demo/template
-```
-
-### Option C: CLI tool
-
-```bash
-# Install globally (optional)
-npm install -g vite-basepath
-
-# Build with base path
-vite-basepath build --base /demo/template
-
-# Build to custom output folder
-vite-basepath build --base /demo/template --outDir public
-
-# Preview the built app
-vite-basepath preview --base /demo/template
-```
-
----
-
 ## Runtime Helpers
 
 Import from `vite-basepath/runtime`:
@@ -224,7 +181,7 @@ Import from `vite-basepath/runtime`:
 ```js
 import { getBase, getAbsoluteBase, resolveUrl } from 'vite-basepath/runtime';
 
-// Get the base path (relative to origin)
+// Detected deploy path (from ./ build + where assets load)
 getBase()           // e.g. "/demo/template/"
 
 // Get the full absolute URL
@@ -246,15 +203,12 @@ Commands:
   preview    Preview the production build
 
 Options:
-  --base,   -b <path>    Deployment base path (default: ./)
   --outDir, -o <dir>     Output directory    (default: dist)
   --config, -c <file>    Vite config file
   --mode,   -m <mode>    Vite mode (production/staging/etc.)
   --help,   -h           Show help
 
-Environment Variables:
-  APP_BASE_URL           Same as --base flag
-  VITE_APP_BASE_URL      Same as --base flag
+(Build always uses base ./ — no --base flag needed.)
 ```
 
 ---
@@ -263,17 +217,10 @@ Environment Variables:
 
 ```js
 dynamicBase({
-  // Explicit base path. Overrides env vars.
-  // Default: reads APP_BASE_URL env var, or falls back to './'
-  base: '/my-app',
-
-  // Inject a tiny runtime script to detect base path automatically.
-  // Needed for getBase() to work in relative (./) mode.
-  // Default: true
+  // Inject runtime script so getBase() can detect deploy path. Default: true
   injectRuntime: true,
 
-  // Print base path info in the terminal during build.
-  // Default: true
+  // Print build info in the terminal. Default: true
   verbose: true,
 })
 ```
@@ -305,13 +252,7 @@ cp -r dist/ /var/www/html/demo/
 cp -r dist/ /var/www/html/projects/my-app/
 ```
 
-### Deploy to GitHub Pages (project page)
-
-```bash
-vite-basepath build --base /your-repo-name
-```
-
-### Deploy to Nginx subfolder
+### Nginx subfolder (same ./ build)
 
 ```nginx
 location /demo/template/ {
@@ -320,9 +261,7 @@ location /demo/template/ {
 }
 ```
 
-```bash
-vite-basepath build --base /demo/template
-```
+Copy `dist/` into that folder — no separate build per path.
 
 ---
 
@@ -334,6 +273,8 @@ vite-basepath build --base /demo/template
 | Vite 4.x | ✅ |
 | Vite 5.x | ✅ |
 | Vite 6.x | ✅ |
+| Vite 7.x | ✅ |
+| Vite 8.x | ✅ |
 
 Works with all Vite-based frameworks:
 - ⚛️ React (Create React App via Vite, Vite + React)

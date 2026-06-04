@@ -1,0 +1,11 @@
+{
+  "name": "vite-basepath-fixture",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "vite": "^8.0.0"
+  },
+  "dependencies": {
+    "vite-basepath": "file:../../.."
+  }
+}

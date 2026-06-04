@@ -24,8 +24,9 @@
     "README.md"
   ],
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/.bin/jest",
-    "lint": "eslint src/ bin/"
+    "check": "node --check src/shared.js && node --check src/index.js && node --check src/runtime.js && node --check bin/cli.js",
+    "verify": "node test/verify-logic.mjs",
+    "verify:build": "npm install --prefix test/fixtures/minimal && node test/verify-build.mjs"
   },
   "keywords": [
     "vite",
