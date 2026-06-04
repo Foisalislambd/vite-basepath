@@ -981,6 +981,167 @@ code {
   margin: 0.25rem 0 0.5rem;
 }
 
+.step-card-lead {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.step-card-hint {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Vite config step — copyable snippets + highlighted file */
+.vite-config-additions {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.vite-config-addition-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.vite-config-step-badge {
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 6px;
+}
+
+.copy-snippet {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0.65rem 0.75rem;
+  background: #1e1b18;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.copy-snippet-code {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #e8e4dd;
+  background: none;
+  padding: 0;
+  word-break: break-all;
+}
+
+@media (min-width: 480px) {
+  .copy-snippet-code {
+    font-size: 0.82rem;
+    word-break: normal;
+  }
+}
+
+.copy-snippet-btn {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.7rem;
+  font-family: var(--font);
+  font-weight: 600;
+  color: #d1d5db;
+  background: #2a2622;
+  border: 1px solid #4b5563;
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.copy-snippet-btn:hover {
+  background: #374151;
+  color: #fff;
+}
+
+.step-card-vite .code-panel {
+  margin-top: 0;
+}
+
+.code-line {
+  display: block;
+  position: relative;
+  padding-left: 0.15rem;
+}
+
+.code-line-text {
+  white-space: pre;
+}
+
+.code-line-highlight {
+  background: rgba(124, 58, 237, 0.18);
+  box-shadow: inset 3px 0 0 var(--accent);
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding-left: calc(1rem - 3px);
+  padding-right: 1rem;
+}
+
+@media (min-width: 480px) {
+  .code-line-highlight {
+    margin-left: -1.35rem;
+    margin-right: -1.35rem;
+    padding-left: calc(1.35rem - 3px);
+    padding-right: 1.35rem;
+  }
+}
+
+.code-line-tag {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #c4b5fd;
+  background: rgba(124, 58, 237, 0.35);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+@media (max-width: 559px) {
+  .code-line-tag {
+    position: static;
+    display: inline-block;
+    transform: none;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+
+  .code-line-highlight {
+    padding-top: 0.15rem;
+    padding-bottom: 0.15rem;
+  }
+}
+
 .tip-card {
   margin-top: 2rem;
   padding: 1rem 1.25rem;

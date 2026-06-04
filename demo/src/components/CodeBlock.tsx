@@ -1,12 +1,19 @@
 import { useState } from 'react';
 
+export type HighlightLine = {
+  line: number;
+  label?: string;
+};
+
 type Props = {
   code: string;
   lang?: string;
   title?: string;
+  /** 1-based line numbers to emphasize (e.g. plugin import + registration) */
+  highlightLines?: HighlightLine[];
 };
 
-export function CodeBlock({ code, lang = 'bash', title }: Props) {
+export function CodeBlock({ code, lang = 'bash', title, highlightLines }: Props) {
   const [copied, setCopied] = useState(false);
 
   async function copy() {
@@ -41,7 +48,25 @@ export function CodeBlock({ code, lang = 'bash', title }: Props) {
         </button>
       </div>
       <pre className="code-panel-body">
-        <code>{code}</code>
+        <code>
+          {highlightLines?.length
+            ? code.split('\n').map((line, index) => {
+                const lineNum = index + 1;
+                const mark = highlightLines.find((h) => h.line === lineNum);
+                return (
+                  <span
+                    key={lineNum}
+                    className={mark ? 'code-line code-line-highlight' : 'code-line'}
+                  >
+                    {mark?.label ? (
+                      <span className="code-line-tag">{mark.label}</span>
+                    ) : null}
+                    <span className="code-line-text">{line || ' '}</span>
+                  </span>
+                );
+              })
+            : code}
+        </code>
       </pre>
     </div>
   );
