@@ -46,36 +46,34 @@ npm install vite-basepath --save-dev
 
 ```js
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react'; // তোমার existing framework plugin
-import viteBasepath from 'vite-basepath'; // ← এই import টা যোগ করো
+import react from '@vitejs/plugin-react'; // your existing framework plugin
+import viteBasepath from 'vite-basepath';
 
 export default defineConfig({
   plugins: [
     react(),
-    viteBasepath(), // ← এই line টা যোগ করো
+    viteBasepath(),
   ],
 });
 ```
 
-> **ব্যস।** এখন `npm run build` করো — build যেকোনো folder-এ কাজ করবে।
+> **Done.** Run `npm run build` — the output works in any folder on your server.
 
 ---
 
-### Router ব্যবহার করলে? (React Router / Vue Router)
+### Using a router? (React Router / Vue Router)
 
-একটা extra step লাগবে — router-কে বলতে হবে app কোথায় আছে।
+One extra step: tell the router where the app is deployed.
 
 **React Router v6:**
 
 ```jsx
 // src/main.jsx
 import { BrowserRouter } from 'react-router-dom';
-import { getBase } from 'vite-basepath/runtime'; // ← এটা import করো
+import { getBase } from 'vite-basepath/runtime';
 
 root.render(
   <BrowserRouter basename={getBase()}>
-    {' '}
-    {/* ← basename যোগ করো */}
     <App />
   </BrowserRouter>,
 );
@@ -86,15 +84,15 @@ root.render(
 ```js
 // src/router/index.js
 import { createWebHistory, createRouter } from 'vue-router';
-import { getBase } from 'vite-basepath/runtime'; // ← এটা import করো
+import { getBase } from 'vite-basepath/runtime';
 
 const router = createRouter({
-  history: createWebHistory(getBase()), // ← getBase() দিয়ে wrap করো
+  history: createWebHistory(getBase()),
   routes: [...],
 });
 ```
 
-> Router না থাকলে (plain Vite, no BrowserRouter) এই step দরকার নেই।
+> Skip this if you do not use client-side routing (plain Vite, no `BrowserRouter`).
 
 ---
 
