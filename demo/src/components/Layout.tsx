@@ -51,7 +51,19 @@ export function Layout({ children }: Props) {
   }, [sidebarOpen]);
 
   return (
-    <div className="docs-shell">
+    <>
+      <div className="docs-shell">
+        <div className="sidebar-desktop">
+          <Sidebar activeId={activeId} />
+        </div>
+        <div className="docs-main">
+          <SiteHeader
+            menuOpen={sidebarOpen}
+            onMenuToggle={() => setSidebarOpen((open) => !open)}
+          />
+          <div className="docs-content">{children}</div>
+        </div>
+      </div>
       <div
         className={sidebarOpen ? 'sidebar-backdrop is-open' : 'sidebar-backdrop'}
         onClick={() => setSidebarOpen(false)}
@@ -60,16 +72,6 @@ export function Layout({ children }: Props) {
       <div className={sidebarOpen ? 'sidebar-drawer is-open' : 'sidebar-drawer'}>
         <Sidebar activeId={activeId} onNavigate={() => setSidebarOpen(false)} />
       </div>
-      <div className="docs-main">
-        <SiteHeader
-          menuOpen={sidebarOpen}
-          onMenuToggle={() => setSidebarOpen((open) => !open)}
-        />
-        <div className="docs-content">{children}</div>
-      </div>
-      <div className="sidebar-desktop">
-        <Sidebar activeId={activeId} />
-      </div>
-    </div>
+    </>
   );
 }
