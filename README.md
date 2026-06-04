@@ -1,6 +1,11 @@
 # vite-basepath
 
+[![npm version](https://img.shields.io/npm/v/vite-basepath.svg)](https://www.npmjs.com/package/vite-basepath)
+[![license](https://img.shields.io/npm/l/vite-basepath.svg)](https://github.com/Foisalislambd/vite-basepath/blob/main/LICENSE)
+
 > Vite plugin that automatically fixes asset paths so your app works when deployed to **any subdirectory or domain path** — without changing your `vite.config.js` every time.
+
+**Repository:** [github.com/Foisalislambd/vite-basepath](https://github.com/Foisalislambd/vite-basepath)
 
 ---
 

@@ -41,10 +41,10 @@ Update `package.json`:
   "author": "Your Name <email@example.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YOUR_USER/vite-basepath.git"
+    "url": "git+https://github.com/Foisalislambd/vite-basepath.git"
   },
-  "bugs": "https://github.com/YOUR_USER/vite-basepath/issues",
-  "homepage": "https://github.com/YOUR_USER/vite-basepath#readme"
+  "bugs": "https://github.com/Foisalislambd/vite-basepath/issues",
+  "homepage": "https://github.com/Foisalislambd/vite-basepath#readme"
 }
 ```
 

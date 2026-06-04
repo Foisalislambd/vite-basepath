@@ -55,7 +55,7 @@
     "router",
     "basename"
   ],
-  "author": "",
+  "author": "Foisalislambd (https://github.com/Foisalislambd)",
   "license": "MIT",
   "peerDependencies": {
     "vite": ">=3.0.0"
@@ -75,12 +75,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/vite-basepath.git"
+    "url": "git+https://github.com/Foisalislambd/vite-basepath.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/vite-basepath/issues"
+    "url": "https://github.com/Foisalislambd/vite-basepath/issues"
   },
-  "homepage": "https://github.com/your-username/vite-basepath#readme",
+  "homepage": "https://github.com/Foisalislambd/vite-basepath#readme",
   "publishConfig": {
     "access": "public"
   }
