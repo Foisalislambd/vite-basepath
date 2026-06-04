@@ -1,6 +1,6 @@
 {
   "name": "vite-basepath",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vite plugin: relative base (./) builds that work in any subdirectory, with runtime path detection for routers",
   "type": "module",
   "main": "./dist/index.js",

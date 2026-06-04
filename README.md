@@ -50,10 +50,7 @@ import react from '@vitejs/plugin-react'; // your existing framework plugin
 import viteBasepath from 'vite-basepath';
 
 export default defineConfig({
-  plugins: [
-    react(),
-    viteBasepath(),
-  ],
+  plugins: [react(), viteBasepath()],
 });
 ```
 
