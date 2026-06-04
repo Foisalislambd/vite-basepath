@@ -19,6 +19,9 @@ export function SiteHeader({ onMenuToggle, menuOpen }: Props) {
         <span />
         <span />
       </button>
+      <a href="#hero" className="topbar-brand">
+        {SITE.title}
+      </a>
       <a
         href={SITE.github}
         className="topbar-github"
