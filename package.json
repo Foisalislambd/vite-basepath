@@ -1,7 +1,7 @@
 {
   "name": "vite-basepath",
   "version": "1.0.0",
-  "description": "Vite plugin that fixes asset paths so your app works in any subdirectory or domain path — zero config needed.",
+  "description": "Vite plugin: relative base (./) builds that work in any subdirectory, with runtime path detection for routers",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -25,29 +25,35 @@
   "files": [
     "dist",
     "bin/vite-basepath.js",
-    "README.md"
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsup",
     "check": "tsc --noEmit",
-    "prepublishOnly": "npm run build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "verify": "npm run build && node test/verify-logic.mjs",
-    "verify:build": "npm run build && npm install --prefix test/fixtures/minimal && node test/verify-build.mjs"
+    "verify:build": "npm run build && npm install --prefix test/fixtures/minimal && node test/verify-build.mjs",
+    "test": "npm run lint && npm run format:check && npm run check && npm run verify && npm run verify:build",
+    "prepublishOnly": "npm run test"
   },
   "keywords": [
     "vite",
+    "vite-plugin",
     "plugin",
     "base",
     "base-path",
-    "base-url",
     "subfolder",
     "subdirectory",
     "deploy",
-    "path-fix",
-    "dynamic",
-    "relative",
+    "relative-path",
     "assets",
-    "build"
+    "router",
+    "basename"
   ],
   "author": "",
   "license": "MIT",
@@ -55,9 +61,13 @@
     "vite": ">=3.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.17.0",
     "@types/node": "^22.10.0",
+    "eslint": "^9.17.0",
+    "prettier": "^3.4.0",
     "tsup": "^8.4.0",
     "typescript": "^5.7.0",
+    "typescript-eslint": "^8.18.0",
     "vite": "^8.0.0"
   },
   "engines": {
@@ -65,10 +75,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/vite-basepath"
+    "url": "https://github.com/your-username/vite-basepath.git"
   },
   "bugs": {
     "url": "https://github.com/your-username/vite-basepath/issues"
   },
-  "homepage": "https://github.com/your-username/vite-basepath#readme"
+  "homepage": "https://github.com/your-username/vite-basepath#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }

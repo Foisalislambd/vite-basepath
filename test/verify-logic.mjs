@@ -18,7 +18,11 @@ assert.equal(
   '/',
 );
 assert.equal(
-  detectBaseFromAssetUrl(`${origin}/demo/static/index.js`, origin, assetPathMarker('static')),
+  detectBaseFromAssetUrl(
+    `${origin}/demo/static/index.js`,
+    origin,
+    assetPathMarker('static'),
+  ),
   '/demo/',
 );
 
@@ -26,7 +30,10 @@ assert.equal(ensureTrailingSlash('/demo'), '/demo/');
 assert.equal(ensureTrailingSlash(''), '/');
 
 assert.equal(detectBaseFromAssetUrl('', origin, '/assets/'), null);
-assert.equal(detectBaseFromAssetUrl(`${origin}/other/bundle.js`, origin, '/assets/'), null);
+assert.equal(
+  detectBaseFromAssetUrl(`${origin}/other/bundle.js`, origin, '/assets/'),
+  null,
+);
 assert.equal(assetPathMarker('static'), '/static/');
 assert.equal(assetPathMarker('/static/'), '/static/');
 

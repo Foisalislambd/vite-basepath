@@ -1,0 +1,6 @@
+dist
+node_modules
+test/fixtures/minimal/dist
+test/fixtures/minimal/node_modules
+package-lock.json
+test/fixtures/minimal/package-lock.json

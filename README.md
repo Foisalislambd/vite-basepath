@@ -68,9 +68,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { getBase } from 'vite-basepath/runtime'; // ← এটা import করো
 
 root.render(
-  <BrowserRouter basename={getBase()}> {/* ← basename যোগ করো */}
+  <BrowserRouter basename={getBase()}>
+    {' '}
+    {/* ← basename যোগ করো */}
     <App />
-  </BrowserRouter>
+  </BrowserRouter>,
 );
 ```
 
@@ -126,8 +128,8 @@ import viteBasepath from 'vite-basepath';
 
 export default defineConfig({
   plugins: [
-    viteBasepath()  // That's it! ✅
-  ]
+    viteBasepath(), // That's it! ✅
+  ],
 });
 ```
 
@@ -156,7 +158,7 @@ import { getBase } from 'vite-basepath/runtime';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter basename={getBase()}>
     <App />
-  </BrowserRouter>
+  </BrowserRouter>,
 );
 ```
 
@@ -181,7 +183,7 @@ import { getBase } from 'vite-basepath/runtime';
 
 <BrowserRouter basename={getBase()}>
   <App />
-</BrowserRouter>
+</BrowserRouter>;
 ```
 
 ---
@@ -194,13 +196,13 @@ Import from `vite-basepath/runtime`:
 import { getBase, getAbsoluteBase, resolveUrl } from 'vite-basepath/runtime';
 
 // Detected deploy path (from ./ build + where assets load)
-getBase()           // e.g. "/demo/template/"
+getBase(); // e.g. "/demo/template/"
 
 // Get the full absolute URL
-getAbsoluteBase()   // e.g. "https://website.com/demo/template/"
+getAbsoluteBase(); // e.g. "https://website.com/demo/template/"
 
 // Build a URL relative to the base
-resolveUrl('api/users')  // e.g. "/demo/template/api/users"
+resolveUrl('api/users'); // e.g. "/demo/template/api/users"
 ```
 
 ---
@@ -234,7 +236,7 @@ viteBasepath({
 
   // Print build info in the terminal. Default: true
   verbose: true,
-})
+});
 ```
 
 ---
@@ -280,15 +282,16 @@ Copy `dist/` into that folder — no separate build per path.
 ## Compatibility
 
 | Vite version | Supported |
-|---|---|
-| Vite 3.x | ✅ |
-| Vite 4.x | ✅ |
-| Vite 5.x | ✅ |
-| Vite 6.x | ✅ |
-| Vite 7.x | ✅ |
-| Vite 8.x | ✅ |
+| ------------ | --------- |
+| Vite 3.x     | ✅        |
+| Vite 4.x     | ✅        |
+| Vite 5.x     | ✅        |
+| Vite 6.x     | ✅        |
+| Vite 7.x     | ✅        |
+| Vite 8.x     | ✅        |
 
 Works with all Vite-based frameworks:
+
 - ⚛️ React (Create React App via Vite, Vite + React)
 - 💚 Vue 3 / Vue 2
 - 🟠 Svelte
@@ -298,6 +301,16 @@ Works with all Vite-based frameworks:
 
 ---
 
+## Project standards
+
+| Document                                         | Purpose                                |
+| ------------------------------------------------ | -------------------------------------- |
+| [Code standards](docs/CODE_STANDARDS.md)         | TypeScript, layout, logic invariants   |
+| [Business standards](docs/BUSINESS_STANDARDS.md) | npm publish, SemVer, release checklist |
+| [Contributing](CONTRIBUTING.md)                  | PR workflow                            |
+| [Security](SECURITY.md)                          | Vulnerability reporting                |
+| [Changelog](CHANGELOG.md)                        | Version history                        |
+
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE).

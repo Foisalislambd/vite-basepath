@@ -35,5 +35,8 @@ coverage/
 .cache/
 *.tsbuildinfo
 
+# Prettier / ESLint cache
+.eslintcache
+
 # Optional npm cache
 .npm/

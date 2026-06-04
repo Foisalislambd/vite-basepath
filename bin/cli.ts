@@ -66,7 +66,7 @@ console.log(`\n  vite-basepath → vite ${command} (base ./)\n`);
 try {
   execSync(cmd, {
     stdio: 'inherit',
-    shell: process.platform === 'win32' ? process.env.ComSpec ?? 'cmd.exe' : '/bin/sh',
+    shell: process.platform === 'win32' ? (process.env.ComSpec ?? 'cmd.exe') : '/bin/sh',
   });
   console.log(`\n  ✅ ${successLabel}!\n`);
 } catch {

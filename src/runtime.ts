@@ -41,10 +41,7 @@ function detectBaseFromAssets(): string | null {
     const origin = window.location.origin;
 
     for (const el of Array.from(nodes)) {
-      const url =
-        (el as HTMLScriptElement).src ||
-        (el as HTMLLinkElement).href ||
-        '';
+      const url = (el as HTMLScriptElement).src || (el as HTMLLinkElement).href || '';
       const detected = detectBaseFromAssetUrl(url, origin, marker);
       if (detected) return detected;
     }
